@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <title>Virtous Quotes</title>
+    <script src="quotes.js"></script>
+    <script>
+        //const QUOTEBANK = [{
+        // quote: "I have never regretted my silence, as for my speech I have regretted it many times.",
+        // author: "Umar Bin Khattab"
+        //}, {
+        // quote: "Taking pains to remove the pains of others is the true essence of generosity.",
+        //  author: "Abubakar siddiq R.A"
+        //}, {
+        // quote: "Be like a FLower That gives fragrance even to the hand that crushes it.",
+        //author: "Ali Bin Abi Talib (R.A)"
+        //}];
+
+        window.onload = init;
+
+        function init() {
+            generateQuote()
+        }
+
+        function generateQuote() {
+
+
+            let quoteSize = QUOTEBANK.length;
+            let randomIndex = Math.floor(Math.random() * quoteSize);
+            let randomQuoteData = QUOTEBANK[randomIndex];
+            let twitteLink = "https://twitter.com/intent/tweet?hashtags=quotes&amp;related=freecodecamp&amp;text="
+
+            let quoteInApiFormat = randomQuoteData.quote.replace(/ /g, "%20");
+            twitteLink += quoteInApiFormat
+
+            let authorInApiFormat = randomQuoteData.author.replace(/ /g, "%20");
+            twitteLink += " - " + authorInApiFormat
+
+            document.getElementById("tweet-quote").href = twitteLink;
+            document.getElementById("text").innerText = randomQuoteData.quote;
+            document.getElementById("author").innerText = randomQuoteData.author;
+        }
+    </script>
+
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row py-5">
+            <div class="col-md-6 offset-md-3">
+                <wrapper id="quote-box">
+                    <div class="card">
+                        <div class="card-header text-center"> Virtous Quotes</div>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <div id="text"></div>
+                            </h5>
+                            <p class="card-text">
+                                <div id="author"></div>
+                            </p>
+
+
+                            <button id="new-quote" onClick="generateQuote();" class="btn btn-block btn-success">New Quote</button>
+                            <a href="#" id="tweet-quote" target="_blank" class="btn btn-block btn-primary">Tweet Quote</a>
+                        </div>
+                    </div>
+                </wrapper>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</body>
+
+</html>
